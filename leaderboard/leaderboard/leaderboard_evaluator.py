@@ -63,8 +63,8 @@ class LeaderboardEvaluator(object):
 
     # Tunable parameters
     client_timeout = 10.0  # in seconds
-    wait_for_world = 20.0  # in seconds
-    frame_rate = 20.0      # in Hz
+    # wait_for_world = 20.0  # in seconds
+    # frame_rate = 1      # in Hz
 
     def __init__(self, args, statistics_manager):
         """
@@ -206,7 +206,8 @@ class LeaderboardEvaluator(object):
 
         self.world = self.client.load_world(town)
         settings = self.world.get_settings()
-        settings.fixed_delta_seconds = 1.0 / self.frame_rate
+        settings.fixed_delta_seconds = 1.0 / args.fps
+        settings.substepping = bool(args.substepping)
         settings.synchronous_mode = True
         self.world.apply_settings(settings)
 
@@ -312,6 +313,8 @@ class LeaderboardEvaluator(object):
         try:
             self._load_and_wait_for_world(args, config.town, config.ego_vehicles)
             self._prepare_ego_vehicles(config.ego_vehicles, False)
+
+            ## HERE ROUTE SCENARIO IS USED!!!
             scenario = RouteScenario(world=self.world, config=config, debug_mode=args.debug)
             self.statistics_manager.set_scenario(scenario.scenario)
 
@@ -470,11 +473,13 @@ def main():
     parser.add_argument("--checkpoint", type=str,
                         default='./simulation_results.json',
                         help="Path to checkpoint used for saving statistics and resuming")
+    parser.add_argument("--substepping", type=int, default=1, help="Enable the physics substepping")
+    parser.add_argument("--fps", type=int, default=20, help="Frames per second")
 
     arguments = parser.parse_args()
 
     statistics_manager = StatisticsManager()
-
+    print(f"\n\n\nFPS:{arguments.fps}\n Subbstepping:{bool(arguments.substepping)}\n\n")
     try:
         leaderboard_evaluator = LeaderboardEvaluator(arguments, statistics_manager)
         leaderboard_evaluator.run(arguments)
