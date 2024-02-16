@@ -1,0 +1,6 @@
+{
+    "editor.formatOnSave": false,
+    "python.analysis.extraPaths": [
+        "./scenario_runner"
+    ]
+}

@@ -84,6 +84,7 @@ class LeaderboardEvaluator(object):
             self.client_timeout = float(args.timeout)
         self.client.set_timeout(self.client_timeout)
 
+        print("Setting traffic manager at port: ", int(args.trafficManagerPort))
         self.traffic_manager = self.client.get_trafficmanager(int(args.trafficManagerPort))
 
         dist = pkg_resources.get_distribution("carla")
@@ -479,7 +480,8 @@ def main():
     arguments = parser.parse_args()
 
     statistics_manager = StatisticsManager()
-    print(f"\n\n\nFPS:{arguments.fps}\n Subbstepping:{bool(arguments.substepping)}\n\n")
+    print(f"\n\n\nFPS:{arguments.fps}\nSubbstepping:{bool(arguments.substepping)}\n\n")
+    print(f"Carla port: {arguments.port}")
     try:
         leaderboard_evaluator = LeaderboardEvaluator(arguments, statistics_manager)
         leaderboard_evaluator.run(arguments)

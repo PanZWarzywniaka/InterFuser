@@ -46,6 +46,7 @@ WEATHERS_IDS = list(WEATHERS)
 
 class BaseAgent(autonomous_agent.AutonomousAgent):
     def setup(self, path_to_conf_file):
+        print("Base agent hello")
         self.track = autonomous_agent.Track.SENSORS
         if path_to_conf_file.endswith("yaml"):
             self.config = yaml.load(open(path_to_conf_file, "r"), Loader=yaml.FullLoader)
@@ -92,7 +93,7 @@ class BaseAgent(autonomous_agent.AutonomousAgent):
             print(string)
             self.save_path = pathlib.Path(os.environ["SAVE_PATH"]) / string
             self.save_path.mkdir(parents=True, exist_ok=False)
-
+            print(f"Save path is: {self.save_path}")
             for sensor in self.sensors():
                 if hasattr(sensor, "save") and sensor["save"]:
                     (self.save_path / sensor["id"]).mkdir()

@@ -158,7 +158,7 @@ def create_carla_rgb_transform(
 
 class InterfuserAgent(autonomous_agent.AutonomousAgent):
     def setup(self, path_to_conf_file):
-
+        print("Hello Agent setup")
         self._hic = DisplayInterface()
         self.lidar_processed = list()
         self.track = autonomous_agent.Track.SENSORS
@@ -218,6 +218,7 @@ class InterfuserAgent(autonomous_agent.AutonomousAgent):
         if SAVE_PATH is not None:
             now = datetime.datetime.now()
             string = pathlib.Path(os.environ["ROUTES"]).stem + "_"
+            string += pathlib.Path(os.environ["CHECKPOINT_ENDPOINT"]).stem + "_"
             string += "_".join(
                 map(
                     lambda x: "%02d" % x,
@@ -225,11 +226,12 @@ class InterfuserAgent(autonomous_agent.AutonomousAgent):
                 )
             )
 
-            print(string)
-
+            
             self.save_path = pathlib.Path(SAVE_PATH) / string
             self.save_path.mkdir(parents=True, exist_ok=False)
             (self.save_path / "meta").mkdir(parents=True, exist_ok=False)
+            
+            print(f"Save path is: {self.save_path}")
 
     def _init(self):
         self._route_planner = RoutePlanner(4.0, 50.0)

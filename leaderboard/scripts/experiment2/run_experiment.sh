@@ -12,16 +12,15 @@ export PYTHONPATH=$PYTHONPATH:scenario_runner
 
 export LEADERBOARD_ROOT=leaderboard
 export CHALLENGE_TRACK_CODENAME=SENSORS
-export PORT=20000 # same as the carla server port
-export TM_PORT=2500 # port for traffic manager, required when spawning multiple servers/clients
+
 export DEBUG_CHALLENGE=0
-export REPETITIONS=1 # multiple evaluation runs
+
 export ROUTES=leaderboard/data/training_routes/routes_town05_long.xml
 export TEAM_AGENT=leaderboard/team_code/interfuser_agent.py # agent
 export TEAM_CONFIG=leaderboard/team_code/interfuser_config.py # model checkpoint, not required for expert
-export CHECKPOINT_ENDPOINT=results/baseline.json # results file
+
 export SCENARIOS=leaderboard/data/scenarios/town05_all_scenarios.json
-export SAVE_PATH=data/eval # path for saving episodes while evaluating
+export SAVE_PATH=/media/olek/2TB_HDD/HDD/interfuser_data # path for saving episodes while evaluating
 export RESUME=False
 
 python3 ${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py \
@@ -36,5 +35,6 @@ python3 ${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py \
 --record=${RECORD_PATH} \
 --resume=${RESUME} \
 --port=${PORT} \
---trafficManagerPort=${TM_PORT}
+--trafficManagerPort=${TM_PORT} \
+--fps=${FPS}
 
