@@ -18,7 +18,7 @@ ports = {
 
 # LOW_CARLA_WORLD_PORT = 20_010
 # LOW_CARLA_TM_PORT = 8010
-REPEAT = 3
+REPEAT = 1
 
 
 
@@ -65,12 +65,12 @@ if __name__ == "__main__":
     quality = sys.argv[1]
     print(f"Doing tests in {quality} quality")
 
-    fps_values = [10,20,30]
+    fps_values = [30]
     random.shuffle(fps_values)
     for fps in fps_values:
         
         cmd = get_cmd(quality, fps)
         print("Running tests for fps: ", fps)
         print(cmd)
-        asyncio.run(run(cmd))
+        # asyncio.run(run(cmd))
         
