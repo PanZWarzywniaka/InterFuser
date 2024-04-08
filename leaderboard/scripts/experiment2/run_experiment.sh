@@ -15,12 +15,13 @@ export CHALLENGE_TRACK_CODENAME=SENSORS
 
 export DEBUG_CHALLENGE=0
 
-export ROUTES=leaderboard/data/training_routes/routes_town05_long.xml
+export SCENARIOS=leaderboard/data/scenarios/town05_all_scenarios.json
+export ROUTES=leaderboard/data/evaluation_routes/routes_town05_long.xml
+
 export TEAM_AGENT=leaderboard/team_code/interfuser_agent.py # agent
 export TEAM_CONFIG=leaderboard/team_code/interfuser_config.py # model checkpoint, not required for expert
 
-export SCENARIOS=leaderboard/data/scenarios/town05_all_scenarios.json
-export SAVE_PATH=/media/olek/2TB_HDD/HDD/interfuser_data # path for saving episodes while evaluating
+export SAVE_PATH=results/execution_data # path for saving episodes while evaluating
 export RESUME=False
 
 python3 ${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py \
