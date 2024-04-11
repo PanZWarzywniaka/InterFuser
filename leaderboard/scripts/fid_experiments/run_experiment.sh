@@ -15,8 +15,8 @@ export CHALLENGE_TRACK_CODENAME=SENSORS
 
 export DEBUG_CHALLENGE=0
 
-export SCENARIOS=leaderboard/data/scenarios/town05_all_scenarios.json
-export ROUTES=leaderboard/data/evaluation_routes/routes_town05_long.xml
+export SCENARIOS=leaderboard/data/official/all_towns_traffic_scenarios_public.json
+export ROUTES=leaderboard/data/official/routes_testing.xml
 
 export TEAM_AGENT=leaderboard/team_code/interfuser_agent.py # agent
 export TEAM_CONFIG=leaderboard/team_code/interfuser_config.py # model checkpoint, not required for expert

@@ -65,7 +65,7 @@ if __name__ == "__main__":
     quality = sys.argv[1]
     print(f"Doing tests in {quality} quality")
 
-    fps_values = [30]
+    fps_values = [20]
     random.shuffle(fps_values)
     for fps in fps_values:
         
